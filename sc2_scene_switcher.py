@@ -45,15 +45,18 @@ def is_in_game():
 
 
 def run_event_loop():
+    global event_loop
     event_loop.run_forever()
 
 
 def stop_event_loop():
+    global event_loop
     event_loop.stop()
 
 
 def switch_scene():
     global prev_in_game
+
     cur_in_game = is_in_game()
     if cur_in_game is not None and (prev_in_game is None
                                     or cur_in_game != prev_in_game):
@@ -63,16 +66,21 @@ def switch_scene():
 
 
 def queue_switch_scene():
+    global event_loop
     event_loop.call_soon_threadsafe(switch_scene)
 
 
 def script_load(settings):
+    global event_loop_thread
+
     event_loop_thread = threading.Thread(target=run_event_loop)
     event_loop_thread.start()
     obs.timer_add(queue_switch_scene, 1500)
 
 
 def script_unload():
+    global event_loop_thread
+
     obs.timer_remove(queue_switch_scene)
-    asyncio.call_soon_threadsafe(stop_event_loop)
-    event_loop_thread.join(2)
+    event_loop.call_soon_threadsafe(stop_event_loop)
+    event_loop_thread.join()
