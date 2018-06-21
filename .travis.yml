@@ -10,14 +10,9 @@ script:
 
 before_deploy:
 - cp README.md README.txt
-- zip ${TRAVIS_TAG}.zip LICENSE README.md README.txt sc2_scene_switcher.py
+- zip obs-sc2-scene-switcher-${TRAVIS_TAG}.zip LICENSE README.md README.txt sc2_scene_switcher.py
 
 deploy:
-  # GitHub - Add zip to release
-  - provider: releases
-    api_key:
-      secure: "YOUR GITHUB API KEY"
-    file: ${TRAVIS_TAG}.zip
     skip_cleanup: true
     on:
       tags: true
