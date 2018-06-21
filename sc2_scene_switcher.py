@@ -57,7 +57,8 @@ async def switch_scene():
     if cur_in_game is not None and (prev_in_game is None
                                     or cur_in_game != prev_in_game):
         scene_name = IN_GAME if cur_in_game else OUT_OF_GAME
-        set_scene_by_name(scene_name)
+        await asyncio.get_event_loop().run_in_executor(
+            None, set_scene_by_name(scene_name))
 
 
 def queue_switch_scene():
