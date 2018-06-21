@@ -53,6 +53,7 @@ def stop_event_loop():
 
 
 def switch_scene():
+    global prev_in_game
     cur_in_game = is_in_game()
     if cur_in_game is not None and (prev_in_game is None
                                     or cur_in_game != prev_in_game):
