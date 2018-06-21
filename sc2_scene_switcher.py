@@ -1,14 +1,14 @@
 import obspython as obs
 import urllib.request
 import json
-import threading
-import asyncio
+# import threading
+# import asyncio
 
 IN_GAME = 'sc2_switcher_in_game'
 OUT_OF_GAME = 'sc2_switcher_out_of_game'
 
-event_loop = asyncio.new_event_loop()
-event_loop_thread = None
+# event_loop = asyncio.new_event_loop()
+# event_loop_thread = None
 prev_in_game = None
 
 
@@ -44,34 +44,34 @@ def is_in_game():
         return None
 
 
-def run_event_loop():
-    event_loop.run_forever()
+# def run_event_loop():
+#     event_loop.run_forever()
 
 
-async def stop_event_loop():
-    event_loop.stop()
+# async def stop_event_loop():
+#     event_loop.stop()
 
 
-async def switch_scene():
-    cur_in_game = await event_loop.run_in_executor(None, is_in_game())
+def switch_scene():
+    cur_in_game = is_in_game()
     if cur_in_game is not None and (prev_in_game is None
                                     or cur_in_game != prev_in_game):
         scene_name = IN_GAME if cur_in_game else OUT_OF_GAME
-        await event_loop.run_in_executor(None, set_scene_by_name(scene_name))
+        set_scene_by_name(scene_name)
 
 
-def queue_switch_scene():
-    asyncio.run_coroutine_threadsafe(switch_scene(), event_loop)
+# def queue_switch_scene():
+#     asyncio.run_coroutine_threadsafe(switch_scene(), event_loop)
 
 
 def script_load(settings):
-    event_loop_thread = threading.Thread(target=run_event_loop)
-    event_loop_thread.start()
-    obs.timer_add(queue_switch_scene, 500)
+    # event_loop_thread = threading.Thread(target=run_event_loop)
+    # event_loop_thread.start()
+    obs.timer_add(switch_scene, 1500)
 
 
 def script_unload():
-    obs.timer_remove(queue_switch_scene)
-    future = asyncio.run_coroutine_threadsafe(stop_event_loop(), event_loop)
-    future.result(2)
-    event_loop_thread.join(2)
+    obs.timer_remove(switch_scene)
+    # future = asyncio.run_coroutine_threadsafe(stop_event_loop(), event_loop)
+    # future.result(2)
+    # event_loop_thread.join(2)
