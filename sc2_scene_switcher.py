@@ -53,6 +53,7 @@ async def stop_event_loop():
 
 
 async def switch_scene():
+    global prev_in_game
     cur_in_game = await event_loop.run_in_executor(None, is_in_game())
     if cur_in_game is not None and (prev_in_game is None
                                     or cur_in_game != prev_in_game):
