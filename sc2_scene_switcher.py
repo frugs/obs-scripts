@@ -70,7 +70,7 @@ def queue_switch_scene():
     event_loop.call_soon_threadsafe(switch_scene)
 
 
-def script_load(settings):
+def script_load(_):
     global event_loop_thread
 
     event_loop_thread = threading.Thread(target=run_event_loop)
@@ -83,4 +83,3 @@ def script_unload():
 
     obs.timer_remove(queue_switch_scene)
     event_loop.call_soon_threadsafe(stop_event_loop)
-    event_loop_thread.join()
