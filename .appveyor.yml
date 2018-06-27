@@ -1,0 +1,6 @@
+image: Visual Studio 2017
+
+version: '0.0.{build}'
+
+build_script:
+  - echo hello
