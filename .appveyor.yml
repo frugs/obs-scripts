@@ -9,6 +9,7 @@ build_script:
   - ps: Compress-Archive -Path README.txt -Update -DestinationPath "obs-sc2-scene-switcher-windows-${Env:APPVEYOR_BUILD_VERSION}.zip"
   - ps: Compress-Archive -Path LICENSE -Update -DestinationPath "obs-sc2-scene-switcher-windows-${Env:APPVEYOR_BUILD_VERSION}.zip"
   - ps: Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.6.5/python-3.6.5-embed-win32.zip" -OutFile python36.zip
+  - mkdir python36
   - ps: Expand-Archive -Path python36.zip -DestinationPath python36
   - ps: Compress-Archive -Path python36 -Update -DestinationPath "obs-sc2-scene-switcher-windows-${Env:APPVEYOR_BUILD_VERSION}.zip"
   - dir
