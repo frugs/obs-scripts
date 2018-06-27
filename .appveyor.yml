@@ -12,6 +12,7 @@ build_script:
   - ps: Compress-Archive -Path README.md -Update -DestinationPath "obs-sc2-scene-switcher-windows-${APPVEYOR_BUILD_VERSION}.zip"
   - ps: Compress-Archive -Path README.txt -Update -DestinationPath "obs-sc2-scene-switcher-windows-${APPVEYOR_BUILD_VERSION}.zip"
   - ps: Compress-Archive -Path LICENSE -Update -DestinationPath "obs-sc2-scene-switcher-windows-${APPVEYOR_BUILD_VERSION}.zip"
+  - dir
 
 artifacts:
   - path: 'README.txt'
