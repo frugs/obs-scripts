@@ -9,15 +9,15 @@ script:
 - python --version
 
 before_deploy:
-- cd ..
-- tar -zcf ${TRAVIS_BUILD_DIR}${REPO}-${BUILD_ENV}-${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}.tar.gz ${REPO}
+- sed -i $'s/$/\r/' LICENSE README.md sc2_scene_switcher.py
+- cp README.md README.txt
+- zip obs-sc2-scene-switcher-${TRAVIS_TAG}.zip LICENSE README.md README.txt sc2_scene_switcher.py
 
 deploy:
-  # GitHub - Add zip to release
   - provider: releases
     api_key:
-      secure: "YOUR GITHUB API KEY"
-    file: ${TRAVIS_BUILD_DIR}${REPO}-${BUILD_ENV}-${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}.tar.gz
+      secure: ${GITHUB_API_KEY}
+    file: obs-sc2-scene-switcher-${TRAVIS_TAG}.zip
     skip_cleanup: true
     on:
       tags: true
