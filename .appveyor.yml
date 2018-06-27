@@ -1,7 +1,3 @@
-environment:
-  github_auth_token:
-    secure: zlT9Lhys07Vl1jwbCrvHJdCkcmPZIUcAA750FhzJNt9qbuGldDzn4svOEH20GPnZ
-
 image: Visual Studio 2017
 
 version: '0.0.3+{build}'
@@ -19,7 +15,8 @@ artifacts:
 deploy:
   - provider: GitHub
     artifact: 'obs-sc2-scene-switcher-windows-%APPVEYOR_BUILD_VERSION%.zip'
-    auth_token: github_auth_token
+    auth_token:
+      secure: zlT9Lhys07Vl1jwbCrvHJdCkcmPZIUcAA750FhzJNt9qbuGldDzn4svOEH20GPnZ
     draft: false
     prerelease: false
     on:
