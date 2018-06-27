@@ -2,6 +2,8 @@ image: Visual Studio 2017
 
 version: '0.0.3+{build}'
 
+build_script: echo "building..."
+
 before_deploy:
   - cp README.md README.txt
 
