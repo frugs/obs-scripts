@@ -8,11 +8,10 @@ version: '0.0.3+{build}'
 
 build_script:
   - cp README.md README.txt
-  - ps:
-    Compress-Archive -Path sc2_scene_switcher.py -DestinationPath "obs-sc2-scene-switcher-windows-${APPVEYOR_BUILD_VERSION}.zip"
-    Compress-Archive -Path README.md -Update -DestinationPath "obs-sc2-scene-switcher-windows-${APPVEYOR_BUILD_VERSION}.zip"
-    Compress-Archive -Path README.txt -Update -DestinationPath "obs-sc2-scene-switcher-windows-${APPVEYOR_BUILD_VERSION}.zip"
-    Compress-Archive -Path LICENSE -Update -DestinationPath "obs-sc2-scene-switcher-windows-${APPVEYOR_BUILD_VERSION}.zip"
+  - ps: Compress-Archive -Path sc2_scene_switcher.py -DestinationPath "obs-sc2-scene-switcher-windows-${Env:APPVEYOR_BUILD_VERSION}.zip"
+  - ps: Compress-Archive -Path README.md -Update -DestinationPath "obs-sc2-scene-switcher-windows-${Env:APPVEYOR_BUILD_VERSION}.zip"
+  - ps: Compress-Archive -Path README.txt -Update -DestinationPath "obs-sc2-scene-switcher-windows-${Env:APPVEYOR_BUILD_VERSION}.zip"
+  - ps: Compress-Archive -Path LICENSE -Update -DestinationPath "obs-sc2-scene-switcher-windows-${Env:APPVEYOR_BUILD_VERSION}.zip"
   - dir
 
 artifacts:
