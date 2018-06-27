@@ -14,7 +14,7 @@ build_script:
   - ps: Compress-Archive -Path LICENSE -Update -DestinationPath "obs-sc2-scene-switcher-windows-${APPVEYOR_BUILD_VERSION}.zip"
 
 artifacts:
-  - path: 'obs-sc2-scene-switcher-windows-%APPVEYOR_BUILD_VERSION%.zip'
+  - path: 'README.txt'
 
 deploy:
   - provider: GitHub
