@@ -1,6 +1,15 @@
 image: Visual Studio 2017
 
-version: '0.0.{build}'
+version: '0.0.3+{build}'
 
-build_script:
-  - echo hello
+before_deploy:
+  - cp README.md README.txt
+
+deploy:
+  - provider: GitHub
+    artifact: obs-sc2-scene-switcher-windows-${version}.zip
+    draft: false
+    prerelease: false
+    on:
+      branch: master                # release from master branch only
+      appveyor_repo_tag: true       # deploy on tag push only
