@@ -24,7 +24,7 @@ Usage Instructions
 ------------------
 
 - Inside OBS Studio, create two scenes: one named `sc2_switcher_in_game`
-  and the other named `sc2_switcher_out_of_game` (**Please ensure that
+  and the other named `sc2_switcher_out_of_game` (**please ensure that
   the names match exactly**).  You can alternatively just rename two
   existing scenes to these names as well.
 - While the script is enabled, the former scene will be set as the
